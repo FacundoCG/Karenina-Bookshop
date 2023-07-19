@@ -1,0 +1,29 @@
+{% extends "bookshop/base.html" %}
+{% load static %}
+{% block title %} Add a genre {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center fw-bold text-light mt-5">Add a genre</h1>
+
+<div class="container-fluid  mt-4 mb-5">
+   <div class="row d-flex justify-content-center mb-5">
+      <div class="col-md-5">
+         <form class="p-3 rounded bg-success fondo" method='POST'>
+ 
+             {% csrf_token %}
+              <div class="form-group">
+                 <label for="exampleFormControlInput1" class="form-label fw-bold">Genre</label>
+                 {{form.name}}
+              </div>
+ 
+              <span class="d-flex justify-content-center mt-4">
+                 <input class="btn btn-dark btn-lg fw-bold mx-4" type="submit" value="Add"/>
+                 <button type ="button" class="btn btn-light btn-lg fw-bold" onclick="window.history.go(-1);">Back</button>
+             </span>       
+         </form>
+     </div>
+   </div>  
+</div>
+
+{% endblock %}

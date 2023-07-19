@@ -1,0 +1,27 @@
+<div class="container-fluid mt-4">
+    <div class="row m-3">
+        {% for book in books_searched %}
+        <div class="col-md-4">
+            <div class="card background mb-3">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-center">{{ book.name }}</h5>
+                    <p class="card-text"><b>Author: </b> {{ book.author }}</p>
+                    <p class="card-text"><b>Genres:</b> 
+                        {% for genre in book.genres.all %}
+                            {{genre.name}}
+                            {% if not forloop.last %}-{% endif %}
+                        {% endfor %}
+                    </p>
+                    <p class="card-text"><b>Price:</b> ${{ book.price }}</p>
+                    
+                    <span class="d-flex justify-content-center">
+                        <a href="{% url 'detail_book' book.id %}"><button class="btn btn-dark fw-bold">Visit</button></a>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>            
+    
+</div>

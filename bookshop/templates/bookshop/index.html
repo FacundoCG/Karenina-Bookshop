@@ -1,0 +1,38 @@
+{% extends "bookshop/base.html" %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center fw-bold text-light mt-5">Welcome to Karenina's Bookshop!</h1>
+
+{% if user.is_authenticated %}
+    <h5 class="text-center fw-bold text-light">Hello, {{user.username}}!</h5>
+{% endif %}
+
+<!--Search box-->
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form class="d-flex" action="" method="GET" >
+                <input class="form-control me-2" type="text" name="search-area" placeholder="Search a book" aria-label="Search book" autocomplete="off">
+               <input type="submit" value="Search" class="btn btn-dark fw-bold">
+           </form>
+        </div>
+    </div>
+</div>
+
+
+{% if search_query == "" %}
+{# This resets the results of the search bar when you refresh the page #} 
+{% elif books_searched %}
+    {% include 'bookshop/includes/books_search.html' %}
+{% else %}
+    <h4 class="fw-bold text-light m-4">No books found.</h4>
+{% endif %}
+
+<!--Last releases-->
+<h2 class="fw-bold text-light m-3 mt-5">Last releases</h2>
+
+{% include 'bookshop/includes/books_cards.html' %}
+
+{% endblock%}

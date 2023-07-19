@@ -1,0 +1,75 @@
+{% extends "bookshop/base.html" %}
+{% block title %} Books {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center fw-bold text-light mt-5">Books</h1>
+
+<div class="container-fluid d-flex justify-content-center">
+    {% if request.user.is_superuser %}
+    <a href="{% url 'create_book' %}"><button class="btn btn-light fw-bold mx-3">Publish a book</button></a>
+    <a href="{% url 'create_genre' %}"><button class="btn btn-light fw-bold">Add a genre</button></a>
+    {% endif %}
+    <button type="button" class="btn btn-dark fw-bold mx-3" data-bs-toggle="modal" data-bs-target="#authors">Authors</button>
+    <button type="button" class="btn btn-dark fw-bold" data-bs-toggle="modal" data-bs-target="#genres">Genres</button>
+</div>
+
+  <!-- Sort by authors-->
+  <div class="modal fade" id="authors" tabindex="-1" aria-labelledby="authorsLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold" id="authorsLabel">Sort by author</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="get" class="form-inline">
+                {% for author in all_authors %}
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="author" value="{{ author }}" id="author{{ forloop.counter }}" {% if author in selected_authors %}checked{% endif %}>
+                    <label class="form-check-label" for="author{{ forloop.counter }}">{{ author }}</label>
+                </div>
+                {% endfor %}
+                <span class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-dark mt-3 fw-bold">Apply Filters</button>
+                </span>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sort by genres-->
+  <div class="modal fade" id="genres" tabindex="-1" aria-labelledby="genresLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 fw-bold" id="genresLabel">Sort by author</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="get" class="form-inline">
+                <label for="genre" class="mx-2">Sort by genre:</label>
+                {% for genre in all_genres %}
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="genre" value="{{ genre }}" id="genre{{ forloop.counter }}" {% if genre in selected_genres %}checked{% endif %}>
+                    <label class="form-check-label" for="genre{{ forloop.counter }}">{{ genre }}</label>
+                </div>
+                {% endfor %}
+                <span class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-dark mt-3 fw-bold">Apply Filters</button>
+                </span>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% if books %}
+  {% include 'bookshop/includes/books_cards.html' %}
+{% else %}
+  <h4 class="fw-bold text-light m-4">No books found.</h4>
+{% endif %}
+
+
+{% endblock %}

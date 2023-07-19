@@ -1,0 +1,57 @@
+{% extends "bookshop/base.html" %}
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+
+<h1 class="text-center fw-bold text-light mt-5">Sign Up</h1>
+
+<div class="container-fluid  mt-4 mb-5">
+    <div class="row d-flex justify-content-center mb-5">
+       <div class="col-md-5">
+          <form class="p-3 rounded bg-success fondo" method='POST'>
+  
+              {% csrf_token %}
+               <div class="form-group">
+                  <label for="exampleFormControlInput1" class="form-label fw-bold">Username</label>
+                  {{form.username}}
+                  {% if form.errors.username %}
+                     <div class="alert alert-danger mt-3">{{ form.errors.username }}</div>
+                  {% endif %}
+               </div>
+               <div class="form-group">
+                  <label for="exampleFormControlInput1" class="form-label mt-3 fw-bold">Email</label>
+                  {{form.email}}
+                  {% if form.errors.email %}
+                     <div class="alert alert-danger mt-3">{{ form.errors.email }}</div>
+                  {% endif %}
+               </div>
+               <div class="form-group">
+                  <label for="exampleFormControlInput1" class="form-label mt-3 fw-bold">Password</label>
+                  {{form.password1}}
+                  {% if form.errors.password1 %}
+                     <div class="alert alert-danger mt-3">{{ form.errors.password1 }}</div>
+                  {% endif %}
+               </div>
+               <div class="form-group">
+                  <label for="exampleFormControlInput1" class="form-label mt-3 fw-bold">Confirm your password</label>
+                  {{form.password2}}
+                  {% if form.errors.password2 %}
+                     <div class="alert alert-danger mt-3">{{ form.errors.password2 }}</div>
+                  {% endif %}
+               </div>
+
+               <span class="d-flex justify-content-center mt-3">
+                  <p>Already have an account? <a class="fw-bold link-danger link-underline link-underline-opacity-0" href="{% url 'login' %}">Log In</a></p>
+               </span>
+
+               <span class="d-flex justify-content-center mt-4">
+                  <input class="btn btn-dark btn-lg fw-bold mx-4" type="submit" value="Sign Up"/>
+                  <button type ="button" class="btn btn-light btn-lg fw-bold" onclick="window.history.go(-1);">Back</button>
+              </span>
+
+          </form>
+      </div>
+    </div>  
+ </div>
+
+{% endblock %}

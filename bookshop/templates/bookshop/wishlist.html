@@ -1,0 +1,13 @@
+{% extends "bookshop/base.html" %}
+{% block title %} My Wishlist {% endblock %}
+{% block content %}
+
+<h1 class="text-center fw-bold text-light mt-5">My Wishlist</h1>
+
+{% if books %}
+    {% include 'bookshop/includes/books_wishlist.html' %}
+{% else %}
+    <h3 class="fw-bold text-light text-center mt-3">Your wishlist is empty.</h3>
+{% endif %}
+
+{% endblock %}
