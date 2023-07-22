@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f*_3(6k=mmn@*!khu+f9j2rmg3&t@*0vk%0j25+kgq4x@#h5n5'
+SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-f*_3(6k=mmn@*!khu+f9j2rmg3&t@*0vk%0j25+kgq4x@#h5n5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['kareninabookshop.pythonanywhere.com']
 
 
 # Application definition
@@ -81,8 +81,8 @@ DATABASES = {
         'NAME': 'karenina_bookshop',
         'USER': 'facu',
         'PASSWORD': 'Baloo3004!',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST': 'localhost', #When I deploy the project, I have to change this host to my new database host
+        'PORT': '3306', #When I deploy the project, I have to leave this empty
     }
 }
 

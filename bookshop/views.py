@@ -109,7 +109,7 @@ def create_book(request):
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('books')  # Redirect to a page displaying the list of books
+            return redirect('books')  
     else:
         form = BookForm()
     
@@ -124,7 +124,7 @@ def create_genre(request):
         form = GenreForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('books')  # Redirect to a page displaying the list of books
+            return redirect('books') 
     else:
         form = GenreForm()
     
@@ -138,7 +138,7 @@ def delete_book(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     if request.method == 'POST':
         book.delete()
-        return redirect('books')  # Redirect to the book list page after deletion
+        return redirect('books') 
 
 @login_required
 @user_passes_test(is_admin)
@@ -149,7 +149,7 @@ def edit_book(request, book_id):
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('detail_book', book_id = book.id)  # Redirect to a page displaying the list of books
+            return redirect('detail_book', book_id = book.id) 
     else:
         form = BookForm(instance=book)
     
