@@ -49,4 +49,6 @@ Before running the application, ensure you have installed the required packages 
 
 Thank you for choosing Karenina's Bookshop. Happy reading! 📚📖
 
+**Website Link:** [https://kareninabookshop.pythonanywhere.com/](https://kareninabookshop.pythonanywhere.com/)
+
 
